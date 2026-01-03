@@ -1,0 +1,127 @@
+The project is already built and mostly working.
+I want to add, fix, and align features exactly with the Assignment PDF, including the complete workflow demonstration and user journey, without breaking existing functionality.
+
+🔐 Multi-User Access (MANDATORY)
+
+Ensure multiple users can register and log in simultaneously.
+
+Each logged-in user must:
+
+Access only their own uploaded videos
+
+Not see videos uploaded by other users
+
+Enforce multi-tenant isolation using:
+
+uploadedBy: userId
+
+
+Fix any session or state issues where one user’s data affects another user.
+
+🎥 Video Management Features (ADD & FIX)
+
+For the user who uploaded the video only, implement the following:
+
+1️⃣ Delete Video
+
+Allow uploader to delete their own video
+
+Remove:
+
+Video file from storage
+
+Video record from database
+
+Block deletion by other users
+
+2️⃣ Rename Video
+
+Allow uploader to edit the video title
+
+Update the database
+
+Reflect changes instantly in the UI
+
+3️⃣ Download Video
+
+Allow uploader to download their own video
+
+Use a secure download endpoint
+
+Prevent access to other users’ videos
+
+🔐 Authorization Rules
+
+Only the uploader (or Admin) can:
+
+Delete a video
+
+Rename a video
+
+Download a video
+
+Viewer role remains read-only
+
+🔄 Workflow Demonstration (MUST MATCH ASSIGNMENT)
+
+Ensure the application clearly demonstrates the complete user journey:
+
+User Registration / Login
+
+Secure authentication system
+
+Video Upload
+
+Intuitive upload interface
+
+Visible upload progress tracking
+
+Processing Phase
+
+Real-time updates using Socket.io
+
+Sensitivity analysis progress display
+
+Content Review
+
+Clear status display:
+
+Safe
+
+Flagged
+
+Appropriate actions based on status and role
+
+Video Streaming
+
+Seamless playback of processed videos
+
+HTTP range-based streaming
+
+Management Tools
+
+Video library showing all user-uploaded videos
+
+Filtering options (safe / flagged, date)
+
+Management actions (rename, delete, download)
+
+🧼 Code Rules
+
+Do NOT break upload, streaming, authentication, or real-time updates
+
+Do NOT remove RBAC or multi-tenant isolation
+
+Keep clean, production-quality, well-commented code
+
+🎯 Final Goal
+
+Multiple users can log in securely
+
+Each user manages only their own videos
+
+Full workflow from login → upload → processing → review → streaming → management works correctly
+
+All assignment workflow requirements are clearly demonstrated
+
+Apply these changes cleanly and update the project.

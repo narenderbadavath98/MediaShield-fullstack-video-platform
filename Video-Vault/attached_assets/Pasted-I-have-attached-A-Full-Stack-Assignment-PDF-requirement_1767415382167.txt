@@ -1,0 +1,273 @@
+I have attached:
+
+A Full-Stack Assignment PDF (requirements document)
+
+An old project ZIP file (previous implementation with bugs)
+
+IMPORTANT
+
+First, carefully read the entire Assignment PDF and understand all requirements.
+Then, review the old project ZIP only for reference.
+Do NOT reuse buggy logic from the old project.
+
+TASK
+
+Rebuild a complete, clean, production-ready full-stack web application that strictly follows the Assignment PDF requirements.
+
+This is a VIDEO UPLOAD, SENSITIVITY PROCESSING, AND STREAMING WEB APPLICATION.
+
+🔧 REQUIRED TECHNOLOGY STACK (MATCH PDF EXACTLY)
+
+Backend
+
+Node.js (Latest LTS)
+
+Express.js
+
+MongoDB with Mongoose
+
+JWT Authentication
+
+Multer for video uploads
+
+Socket.io for real-time progress updates
+
+FFmpeg (processing can be simulated)
+
+Frontend
+
+React (Latest stable)
+
+Vite
+
+Tailwind CSS
+
+Axios
+
+Socket.io Client
+
+📁 PROJECT STRUCTURE (MANDATORY)
+
+Backend
+
+config (database, socket)
+
+models (User, Video)
+
+controllers
+
+routes
+
+middleware (auth, role-based access, upload)
+
+services (video sensitivity processing)
+
+uploads (store videos here)
+
+Frontend
+
+pages (Login, Register, Upload, Dashboard, VideoLibrary)
+
+components (Navbar, VideoCard, VideoPlayer)
+
+context (AuthContext, VideoContext)
+
+Keep frontend and backend in separate directories.
+
+🔐 AUTHENTICATION & RBAC (FROM PDF)
+
+Implement JWT authentication with roles:
+
+Viewer → view & stream videos
+
+Editor → upload & manage videos
+
+Admin → full system access
+
+Enforce role-based access on:
+
+Backend APIs
+
+Frontend UI
+
+🏢 MULTI-TENANT ARCHITECTURE (VERY IMPORTANT)
+
+Each user must access only their own videos
+
+Store uploadedBy: userId in every video record
+
+Video list APIs must return ALL videos for the logged-in user
+
+NEVER overwrite or replace previous videos
+
+📤 VIDEO UPLOAD SYSTEM (CRITICAL – FIX OLD BUGS)
+
+Accept valid formats only: mp4, mov
+
+Validate file size and type
+
+Use Multer with unique filenames:
+
+timestamp + random string + original filename
+
+NEVER overwrite existing video files
+
+Each upload must create a NEW database record.
+
+Video schema must include:
+
+title
+
+filename
+
+videoPath (unique per video)
+
+size
+
+uploadDate
+
+status (uploaded → processing → completed)
+
+sensitivity (safe / flagged)
+
+uploadedBy
+
+⚙️ VIDEO PROCESSING PIPELINE (MATCH PDF)
+
+Implement a processing flow:
+
+Upload validation
+
+Storage
+
+Sensitivity analysis (simple rule-based logic)
+
+Status update
+
+Streaming preparation
+
+Emit real-time progress using Socket.io:
+
+10%
+
+40%
+
+70%
+
+100%
+
+📡 REAL-TIME DASHBOARD
+
+Show live processing progress
+
+Show correct status for each video
+
+When a new video is uploaded:
+
+Do NOT replace the existing video list
+
+ALWAYS append:
+
+setVideos(prev => [...prev, newVideo])
+
+🎥 VIDEO STREAMING (MOST IMPORTANT)
+
+Implement secure HTTP range-based streaming.
+
+Streaming endpoint:
+
+GET /api/videos/stream/:videoId
+
+
+Backend rules:
+
+Fetch video using videoId
+
+Use its stored videoPath
+
+Handle Range headers correctly
+
+Return 206 Partial Content
+
+Set headers:
+
+Content-Range
+
+Accept-Ranges
+
+Content-Length
+
+Content-Type: video/mp4
+
+🚫 Do NOT use static or hardcoded file paths
+🚫 Do NOT stream the same file for different videos
+
+🎬 FRONTEND VIDEO PLAYER RULES
+
+Use native <video> tag only
+
+Do NOT use Axios or fetch for video streaming
+
+Each video must use its own unique stream URL:
+
+src={`${BACKEND_URL}/api/videos/stream/${video._id}`}
+
+
+Use unique React keys:
+
+key={video._id}
+
+
+Switching videos must reload the source correctly
+
+📚 VIDEO LIBRARY & FILTERING (FROM PDF)
+
+Display all uploaded videos
+
+Filter by:
+
+Safe / Flagged
+
+Upload date
+
+Recent activity must show correct, unique videos
+
+🎨 UI / UX
+
+Clean, modern, responsive UI (Tailwind CSS)
+
+Upload progress indicators
+
+Status badges (Processing, Safe, Flagged)
+
+Role-based UI visibility
+
+🧼 CODE QUALITY & STANDARDS
+
+Clean, readable, well-commented code
+
+Proper error handling
+
+Environment variables for secrets
+
+No hardcoded IDs or paths
+
+No reused state causing playback bugs
+
+✅ FINAL VALIDATION (MUST PASS)
+
+Upload multiple different videos
+
+Each video plays its own correct content
+
+New uploads never play old videos
+
+Refresh page → videos still correct
+
+No duplicate playback issues
+
+🎯 FINAL GOAL
+
+Build a professional, production-ready full-stack web application that fully satisfies the Assignment PDF and does not repeat any previous bugs.
+
+Generate the complete backend and frontend code accordingly.
