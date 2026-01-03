@@ -8,7 +8,7 @@ This project is developed as part of a **Full-Stack Assignment** and demonstrate
 ## 🌐 Live Application URL
 
 🔗 **Live App:**  
-https://video-vault--badavathnarend9.replit.app/auth
+https://video-vault--badavathnarend9.replit.app
 
 ---
 
